@@ -6,6 +6,7 @@
 	<classpathentry kind="lib" path="libs/apache/httpclient-4.5.2.jar"/>
 	<classpathentry kind="lib" path="libs/apache/httpclient-cache-4.5.2.jar"/>
 	<classpathentry kind="lib" path="libs/apache/httpcore-4.4.4.jar"/>
+	<classpathentry kind="lib" path="libs/apache/commons-logging-1.2.jar"/>
 	<classpathentry kind="lib" path="libs/db2jcc4.jar"/>
 	<classpathentry kind="lib" path="libs/servlet-api.jar"/>
 	<classpathentry kind="lib" path="libs/vtd-xml.jar"/>
