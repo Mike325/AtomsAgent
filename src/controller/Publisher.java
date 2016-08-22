@@ -140,8 +140,10 @@ public class Publisher
         
         String attach_url = "/common/opensocial/basic/rest/ublog/{userId}/@all";
         String json = 	"{"+
-        				"\"content\":\"{user_name} just completed the challenge: '{challenge_name}' on #{category_name} \n Message: '{text}'\n "+
+        				"\"content\":\"{user_name} just completed the challenge: '{challenge_name}' on #{category_name} \n {message} "+
         					"Join #ATOMS https://ibm.biz/Bd4ufn\"{image} }";
+        
+        String message = " Message: '{text}'\n";
         
         String attachment = ",\"attachments\":["+
 							"{"+
@@ -172,7 +174,7 @@ public class Publisher
                 
                 DebugMode.printDebugMessage("ID de imagen:   " + imageid);
                 
-                json_body = (imageid.contains("PHOTO")) ? json_body.replace("{image}", "") : json_body.replace("{image}", attachment ) ;
+                json_body = (imageid.contains("PHOTO")) ? json_body.replace("{image}", "") : json_body.replace("{image}", attachment );
                                 
                 if(!imageid.equals("-1"))
                 {
@@ -180,10 +182,22 @@ public class Publisher
                     DebugMode.printDebugMessage("ID de usuario:   " + userid);
                     
                     if(!userid.equals("-1"))
-                    {
-                    	if(post.getChallengeText().contains("\""))
+                    { 
+                    	
+                    	if(post.getChallengeText().isEmpty() || (post.getChallengeText().length() == 1 && post.getChallengeText().contains(" ")) )
                     	{
-                    		post.setChallengeText(post.getChallengeText().replace("\"", "'"));
+                    		json_body = json_body.replace("{message}", "");
+                    	}
+                    	else
+                    	{
+                    		json_body = json_body.replace("{message}", message) ;
+                    		
+                    		if(!post.getChallengeText().isEmpty() && post.getChallengeText().contains("\""))
+                        	{
+                        		post.setChallengeText(post.getChallengeText().replace("\"", "'"));
+                        	}
+                    		
+                    		json_body = json_body.replace("{text}", post.getChallengeText());
                     	}
                     	
                     	String api_url   = base_url + attach_url.replace("{userId}", userid);
@@ -191,7 +205,6 @@ public class Publisher
                     	json_body = json_body.replace("{user_name}", post.getUserName());
                     	json_body = json_body.replace("{category_name}", post.getCategoryName());
                     	json_body = json_body.replace("{challenge_name}", post.getChallengeName());
-                    	json_body = json_body.replace("{text}", post.getChallengeText());
                     	                    	
                     	if(!imageid.contains("PHOTO"))
                     	{

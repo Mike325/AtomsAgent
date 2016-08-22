@@ -20,6 +20,8 @@ public class AtomsAgent
     public static void main(String[] args) 
     {
     	DebugMode.setDebugState(true);
+    	
+    	// 0 == produccion; 1 == test
     	Connector.setSchema(0);
     	int time = 30;
     	
