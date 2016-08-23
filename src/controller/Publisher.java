@@ -63,6 +63,27 @@ public class Publisher
         this.auth      = "YXRvbXNnZGxAbXgxLmlibS5jb206YXRvbXM5OWdkbA==";
     }    
     
+    /*
+    * 
+    */
+    public boolean postAPI( String api_url )
+    {
+        boolean success = false;
+
+        return success;
+    }
+
+    /*
+    * 
+    */
+    public boolean getAPI( String api_url )
+    {
+        boolean success = false;
+
+        return success;
+    }
+     
+    
    /*
     * 
     */
@@ -141,7 +162,7 @@ public class Publisher
         String attach_url = "/common/opensocial/basic/rest/ublog/{userId}/@all";
         String json = 	"{"+
         				"\"content\":\"{user_name} just completed the challenge: '{challenge_name}' on #{category_name} \n {message} "+
-        					"Join #ATOMS https://ibm.biz/Bd4ufn\"{image} }";
+        					"Be part of #ATOMS https://ibm.biz/Bd4ufn\"{image} }";
         
         String message = " Message: '{text}'\n";
         
@@ -419,7 +440,6 @@ public class Publisher
     */
     public String stringToFile( String image, int challenge_id, String name ) throws IOException
     {
-        //String image_content = new String(decoded);
         byte[] decoded = Base64.decodeBase64(image);
         
         name = name.replace(" ", "-");
@@ -503,7 +523,6 @@ public class Publisher
         }
         
         DebugMode.printDebugMessage("\n");
-
         return posts;
     }
 }
