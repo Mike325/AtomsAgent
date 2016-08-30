@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="Create Runnable Jar for Project AtomsAgent with Jar-in-Jar Loader">
+    <!--this file was created by Eclipse Runnable JAR file Export Wizard-->
+    <!--ANT 1.7 is required-->
+    <!--define folder properties-->
+    <property name="dir.buildfile" value="."/>
+    <property name="dir.workspace" value="C:/Users/IBM_ADMIN/workspace"/>
+    <property name="dir.jarfile" value="${dir.buildfile}"/>
+    <target name="create_run_jar">
+        <jar destfile="${dir.jarfile}/AtomsAgent.jar">
+            <manifest>
+                <attribute name="Main-Class" value="org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader"/>
+                <attribute name="Rsrc-Main-Class" value="persistance.AtomsAgent"/>
+                <attribute name="Class-Path" value="."/>
+                <attribute name="Rsrc-Class-Path" value="./ commons-codec-1.9.jar httpclient-4.5.2.jar httpclient-cache-4.5.2.jar httpcore-4.4.4.jar commons-logging-1.2.jar db2jcc4.jar servlet-api.jar vtd-xml.jar"/>
+            </manifest>
+            <zipfileset src="jar-in-jar-loader.zip"/>
+            <fileset dir="${dir.jarfile}/bin"/>
+            <zipfileset dir="${dir.jarfile}/libs/apache" includes="commons-codec-1.9.jar"/>
+            <zipfileset dir="${dir.jarfile}/libs/apache" includes="httpclient-4.5.2.jar"/>
+            <zipfileset dir="${dir.jarfile}/libs/apache" includes="httpclient-cache-4.5.2.jar"/>
+            <zipfileset dir="${dir.jarfile}/libs/apache" includes="httpcore-4.4.4.jar"/>
+            <zipfileset dir="${dir.jarfile}/libs/apache" includes="commons-logging-1.2.jar"/>
+            <zipfileset dir="${dir.jarfile}/libs" includes="db2jcc4.jar"/>
+            <zipfileset dir="${dir.jarfile}/libs" includes="servlet-api.jar"/>
+            <zipfileset dir="${dir.jarfile}/libs" includes="vtd-xml.jar"/>
+        </jar>
+    </target>
+</project>
